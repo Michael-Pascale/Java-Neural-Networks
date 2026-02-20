@@ -1,3 +1,5 @@
+package com.michaelpascale.javaneuralnetworks;
+
 import java.util.Random;
 public class SigmoidRunner {
     public static void main(String[] args){

@@ -1,3 +1,5 @@
+package com.michaelpascale.javaneuralnetworks;
+
 import java.util.Random;
 
 import org.ejml.dense.row.MatrixFeatures_DDRM;

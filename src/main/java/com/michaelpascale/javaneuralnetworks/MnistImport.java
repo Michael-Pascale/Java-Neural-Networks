@@ -1,8 +1,9 @@
+package com.michaelpascale.javaneuralnetworks;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Arrays;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;

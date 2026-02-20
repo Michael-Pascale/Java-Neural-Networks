@@ -1,5 +1,6 @@
+package com.michaelpascale.javaneuralnetworks;
+
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Random;
 
 import org.ejml.simple.SimpleMatrix;
@@ -9,7 +10,7 @@ public class FFRunner {
         System.out.println("This program tests the feed forward neural network, with some challenges.");
         //testFunctionality();
         //testXOR();
-        testMNist();
+        testMNist(); // TODO figure out how to point to files properly
     }
 
     public static void testFunctionality(){
@@ -68,7 +69,7 @@ public class FFRunner {
             System.out.println("The network trained over the data " + numIterations + " times in " + time / 1000d + " seconds.");
 
             //get the test data
-            //HashMap<Integer, double[]> test = MnistImport.importTestData();
+            //HashMap<Integer, double[]> test = com.michaelpascale.javaneuralnetworks.MnistImport.importTestData();
             double[] avgError = {0,0,0,0,0,0,0,0,0,0};
             SimpleMatrix answer = new SimpleMatrix(expected.length,1);
             SimpleMatrix guess = new SimpleMatrix(expected.length,1);

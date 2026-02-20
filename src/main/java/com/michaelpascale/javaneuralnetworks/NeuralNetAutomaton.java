@@ -1,3 +1,5 @@
+package com.michaelpascale.javaneuralnetworks;
+
 import java.io.IOException;
 
 public class NeuralNetAutomaton {
