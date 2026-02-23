@@ -1,4 +1,6 @@
-package com.michaelpascale.javaneuralnetworks;
+package com.michaelpascale.javaneuralnetworks.demo;
+
+import com.michaelpascale.javaneuralnetworks.utils.SigmoidPerceptron;
 
 import java.util.Random;
 public class SigmoidRunner {
@@ -17,7 +19,6 @@ public class SigmoidRunner {
 
         long time = System.currentTimeMillis();
         double error, avg;
-        avg = 0;
         SigmoidPerceptron p = new SigmoidPerceptron(0.001f, 2, 3);
         do{
             int count = 0;

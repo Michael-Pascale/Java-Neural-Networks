@@ -5,20 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <dependencies>
+        <!-- Note: this version has a potential vulnerability according to Intellij: CVE-2025-48924
+        According to the description, the runner/import that uses this should not be affected.
+        -->
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
-            <version>5.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ejml</groupId>
-            <artifactId>ejml-core</artifactId>
-            <version>0.39</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.8.0</version>
+            <version>5.12.0</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/org.ejml/ejml-core -->
         <dependency>
@@ -35,18 +28,6 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>15</source>
-                    <target>15</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
     <groupId>com.michaelpascale</groupId>
     <artifactId>neural-networks</artifactId>

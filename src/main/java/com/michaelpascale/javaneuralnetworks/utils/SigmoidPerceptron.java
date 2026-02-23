@@ -1,4 +1,4 @@
-package com.michaelpascale.javaneuralnetworks;
+package com.michaelpascale.javaneuralnetworks.utils;
 
 import java.util.Random;
 

@@ -1,4 +1,7 @@
-package com.michaelpascale.javaneuralnetworks;
+package com.michaelpascale.javaneuralnetworks.demo;
+
+import com.michaelpascale.javaneuralnetworks.utils.NeuralNetAutomaton;
+import com.michaelpascale.javaneuralnetworks.utils.Perceptron;
 
 import java.io.IOException;
 import java.util.Random;
@@ -77,16 +80,18 @@ public class PerceptronRunner{
     }
     
     public static void testRules(){
+        // Note, rule 220 refers to cellular automata: https://mathworld.wolfram.com/Rule220.html
         System.out.println("This will test if a perceptron can accurately emulate rule 220.");
         double[][] data = {{1,1,1,1},{1,1,1,0},{1,1,0,1},{1,1,0,0},{1,0,1,1},{1,0,1,0},{1,0,0,1},{1,0,0,0}};
         int[] expected = {-1,-1,-1,1,1,1,1,-1};
         float accuracy;
-        Perceptron p = new Perceptron(1.0f, 0.5f, 4, 3);
+        // tweak parameters to see differences in learning rate and time to reach different accuracies.
+        Perceptron p = new Perceptron(.01f, .85f, 4, 3);
         long time = System.currentTimeMillis();
         do{
             accuracy = p.train(data,expected);
-        }while(accuracy < 1.0 && (System.currentTimeMillis() - time) < 60000);
-        System.out.println("Took " + System.currentTimeMillis() + " to get to " + accuracy + " accuracy.");
+        }while(accuracy < 1.0 && (System.currentTimeMillis() - time) < 120000);
+        System.out.println("Took " + System.currentTimeMillis() + " ms to get to " + accuracy * 100.0 + "% accuracy.");
         if(accuracy == 1.0)
             p.saveToFile("PerceptronRule3220.p");
     }

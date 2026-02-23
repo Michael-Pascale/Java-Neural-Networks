@@ -1,4 +1,4 @@
-package com.michaelpascale.javaneuralnetworks;
+package com.michaelpascale.javaneuralnetworks.demo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+
 public class MnistImport {
     public double[][] training, test;
     public int[] trainingkeys, testKeys;

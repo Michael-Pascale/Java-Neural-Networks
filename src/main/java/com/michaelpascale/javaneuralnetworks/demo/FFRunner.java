@@ -1,13 +1,14 @@
-package com.michaelpascale.javaneuralnetworks;
+package com.michaelpascale.javaneuralnetworks.demo;
 
 import java.util.Arrays;
 import java.util.Random;
 
+import com.michaelpascale.javaneuralnetworks.utils.FeedForwardNetwork;
 import org.ejml.simple.SimpleMatrix;
 
 public class FFRunner {
 
-    public static final int MNIST_TRAINING_ITERATIONS = 10;
+    public static final int MNIST_TRAINING_ITERATIONS = 50;
     public static void main(String[] args){
         System.out.println("This program tests the feed forward neural network, with some challenges.");
         //testFunctionality();
@@ -44,7 +45,7 @@ public class FFRunner {
     public static void testMNist() {
         System.out.println("This will test the networks performance over mnist data for digit recognition");
         //initialize the network
-        FeedForwardNetwork nn = new FeedForwardNetwork(784, 256, 10);
+        FeedForwardNetwork nn = new FeedForwardNetwork(784, 256, 10, 0.01);
         double[] expected = {0,0,0,0,0,0,0,0,0,0};
         int prev = 0;
         int numIterations = MNIST_TRAINING_ITERATIONS;
@@ -78,7 +79,7 @@ public class FFRunner {
 
             // Iterate over some never before seen data, and determine if the training was successful.
             //get the test data
-            //HashMap<Integer, double[]> test = com.michaelpascale.javaneuralnetworks.MnistImport.importTestData();
+            //HashMap<Integer, double[]> test = com.michaelpascale.javaneuralnetworks.demo.MnistImport.importTestData();
             double[] avgError = {0,0,0,0,0,0,0,0,0,0};
             SimpleMatrix answer = new SimpleMatrix(expected.length,1);
             SimpleMatrix guess = new SimpleMatrix(expected.length,1);

@@ -1,4 +1,4 @@
-package com.michaelpascale.javaneuralnetworks;
+package com.michaelpascale.javaneuralnetworks.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -92,7 +92,7 @@ public class Perceptron {
 
 
     public String saveToFile(){
-        String filename = "com.michaelpascale.javaneuralnetworks.Perceptron" + w[0] + ".p";
+        String filename = "com.michaelpascale.javaneuralnetworks.utils.Perceptron" + w[0] + ".p";
         return saveToFile(filename);
         
     }
