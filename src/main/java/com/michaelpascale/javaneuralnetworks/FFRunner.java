@@ -6,6 +6,8 @@ import java.util.Random;
 import org.ejml.simple.SimpleMatrix;
 
 public class FFRunner {
+
+    public static final int MNIST_TRAINING_ITERATIONS = 10;
     public static void main(String[] args){
         System.out.println("This program tests the feed forward neural network, with some challenges.");
         //testFunctionality();
@@ -45,21 +47,27 @@ public class FFRunner {
         FeedForwardNetwork nn = new FeedForwardNetwork(784, 256, 10);
         double[] expected = {0,0,0,0,0,0,0,0,0,0};
         int prev = 0;
-        int numIterations = 100;
+        int numIterations = MNIST_TRAINING_ITERATIONS;
         try{
             //get the data
             MnistImport importer = new MnistImport();
             long time = System.currentTimeMillis();
             for(int counter = 0; counter < numIterations; counter++){
                 prev = 0;
+                // iterate over training data.
                 for(int i = 0; i < importer.trainingkeys.length; i++){
+                    // get key for training data, aka the number represented by the data in training[i]
                     int key = importer.trainingkeys[i];
 
                     //initialize expected data
+                    // expected[prev] resets to zero
+                    // expected[key] is 1. We expect the model to say with 100 percent confidence that the number
+                    // in training[i] is trainingKeys[i].
                     expected[prev] = 0;
                     expected[key] = 1;
                     prev = key;
                     //train network over the data
+                    // if output network on training[i] doesnt match expected, it will adjust weights.
                     nn.train(importer.training[i], expected);
                 }
                 System.out.println("The network has finished one iteration over the data.");
@@ -68,6 +76,7 @@ public class FFRunner {
             time = System.currentTimeMillis() - time;
             System.out.println("The network trained over the data " + numIterations + " times in " + time / 1000d + " seconds.");
 
+            // Iterate over some never before seen data, and determine if the training was successful.
             //get the test data
             //HashMap<Integer, double[]> test = com.michaelpascale.javaneuralnetworks.MnistImport.importTestData();
             double[] avgError = {0,0,0,0,0,0,0,0,0,0};
@@ -82,13 +91,13 @@ public class FFRunner {
                 int key = importer.testKeys[i];
                 expected[prev] = 0;
                 expected[key] = 1;
-                prev = key;
+                prev = key; // reset prev for next iteration
 
                 double[] output = nn.feedForward(importer.test[i]);
                 guess.setColumn(0, 0, output);
                 answer.setColumn(0, 0, expected);
                 outputErrors = answer.minus(guess);
-                avgErrorMat.plus(outputErrors);
+                avgErrorMat = avgErrorMat.plus(outputErrors);
                 counter++;
             }
             time = System.currentTimeMillis() - time;
