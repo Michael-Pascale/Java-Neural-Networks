@@ -11,8 +11,8 @@ public class FFRunner {
     public static void main(String[] args){
         System.out.println("This program tests the feed forward neural network, with some challenges.");
         //testFunctionality();
-        //testXOR();
-        testMNist(); // TODO figure out how to point to files properly
+        // testXOR();
+        testMNist();
     }
 
     public static void testFunctionality(){

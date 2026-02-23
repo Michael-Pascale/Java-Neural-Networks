@@ -6,9 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 
 import com.opencsv.CSVReader;
@@ -86,6 +83,48 @@ public class MnistImport {
         }
 
         System.out.println("The data is finished being imported");
+    }
+
+    /**
+     * Slapped together print for a single row. Should work in most terminals with monospace fonts.
+     */
+    public static void debugPrintLine(String[] image) {
+        System.out.printf("Number: %s%n", image[0]);
+        for (int i = 1; i < image.length; i++) {
+            int num = Integer.parseInt(image[i]);
+            if (num == 0) {
+                System.out.print("0");
+            } else {
+                System.out.print("1");
+            }
+
+
+            if (i % 28 == 0) {
+                System.out.println();
+            }
+        }
+
+        // Add newline after entire row
+        System.out.println();
+    }
+
+    public static void debugPrintLine(int key, double[] image) {
+        System.out.printf("Number: %s%n", key);
+        for (int i = 0; i < image.length; i++) {
+            if (image[i] == 0) {
+                System.out.print("0");
+            } else {
+                System.out.print("1");
+            }
+
+
+            if (i > 0 && i % 28 == 0) {
+                System.out.println();
+            }
+        }
+
+        // Add newline after entire row
+        System.out.println();
     }
 
 
