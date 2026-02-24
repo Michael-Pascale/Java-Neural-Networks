@@ -9,8 +9,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Perceptron {
-    private double[] w; // weights initialized with zeroes
+    private double[] w; // weights initialized with random numbers or passed in constructor
     private float r;//learning rate
+    // Currently not used within the perceptron itself.
     private float a; //accuracy for good perceptron
 
     public Perceptron(float r, float a, int size, int wRange){

@@ -43,6 +43,26 @@ public class SigmoidPerceptron {
         return Math.abs(error);
     }
 
+    /**
+     * Train over a dataset and return the avg error
+     * @param inputs
+     * @param expected
+     * @param binary
+     *
+     * Note that inputs and expected should be the same length, and non-zero to avoid a divide by zero error.
+     * @return
+     */
+    public double train(double[][] inputs, double[] expected, boolean binary) {
+        double totalError = 0;
+        int counter;
+        for (counter = 0; counter < inputs.length; counter++) {
+            // trains against that input, add error to total.
+            totalError += train(inputs[counter], expected[counter], binary);
+        }
+        // average error over the data.
+        return totalError / (double) counter;
+    }
+
     public int threshold(double input){
         return input <= 0.5 ? 0 : 1;
     }
