@@ -1,3 +1,8 @@
+package com.michaelpascale.javaneuralnetworks.demo;
+
+import com.michaelpascale.javaneuralnetworks.utils.NeuralNetAutomaton;
+import com.michaelpascale.javaneuralnetworks.utils.Perceptron;
+
 import java.io.IOException;
 import java.util.Random;
 
@@ -73,18 +78,28 @@ public class PerceptronRunner{
         
 
     }
-    
+
+    /**
+     * I have been running this and unable to tweak the perceptron to get accuracy higher than 50%
+     *
+     * The other tests have all been successful, so I have reason to suspect that rule 220's problem set is
+     * non-linear in nature, and the perceptron cannot properly map it. This is supported by all of my runs
+     * Being 50 percent accuracy exactly on timeout, effectively the perceptrons function is no better than a guess.
+     */
     public static void testRules(){
+        // Note, rule 220 refers to cellular automata: https://mathworld.wolfram.com/Rule220.html
         System.out.println("This will test if a perceptron can accurately emulate rule 220.");
         double[][] data = {{1,1,1,1},{1,1,1,0},{1,1,0,1},{1,1,0,0},{1,0,1,1},{1,0,1,0},{1,0,0,1},{1,0,0,0}};
         int[] expected = {-1,-1,-1,1,1,1,1,-1};
         float accuracy;
-        Perceptron p = new Perceptron(1.0f, 0.5f, 4, 3);
+        // tweak parameters to see differences in learning rate and time to reach different accuracies.
+        final float EXPECTED_ACCURACY = 0.85f;
+        Perceptron p = new Perceptron(.05f, EXPECTED_ACCURACY, 4, 3);
         long time = System.currentTimeMillis();
         do{
             accuracy = p.train(data,expected);
-        }while(accuracy < 1.0 && (System.currentTimeMillis() - time) < 60000);
-        System.out.println("Took " + System.currentTimeMillis() + " to get to " + accuracy + " accuracy.");
+        }while(accuracy < EXPECTED_ACCURACY && (System.currentTimeMillis() - time) < 120000);
+        System.out.println("Took " + System.currentTimeMillis() + " ms to get to " + accuracy * 100.0 + "% accuracy.");
         if(accuracy == 1.0)
             p.saveToFile("PerceptronRule3220.p");
     }

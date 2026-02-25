@@ -1,3 +1,5 @@
+package com.michaelpascale.javaneuralnetworks.utils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,8 +9,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Perceptron {
-    private double[] w; // weights initialized with zeroes
+    private double[] w; // weights initialized with random numbers or passed in constructor
     private float r;//learning rate
+    // Currently not used within the perceptron itself.
     private float a; //accuracy for good perceptron
 
     public Perceptron(float r, float a, int size, int wRange){
@@ -90,7 +93,7 @@ public class Perceptron {
 
 
     public String saveToFile(){
-        String filename = "Perceptron" + w[0] + ".p";
+        String filename = "com.michaelpascale.javaneuralnetworks.utils.Perceptron" + w[0] + ".p";
         return saveToFile(filename);
         
     }

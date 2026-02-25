@@ -1,21 +1,25 @@
+package com.michaelpascale.javaneuralnetworks.utils;
+
 import java.util.Random;
 
-import org.ejml.dense.row.MatrixFeatures_DDRM;
 import org.ejml.simple.SimpleMatrix;
-import org.ejml.sparse.csc.CommonOps_DSCC;
 
 public class FeedForwardNetwork{
     private SimpleMatrix weightsIH, weightsHO, biasH, biasO;
     private double learningRate;
 
-    public FeedForwardNetwork(int input_len, int hidden_len, int output_len){
+    public FeedForwardNetwork(int input_len, int hidden_len, int output_len, double learningRate){
         Random rand = new Random();
         weightsIH = SimpleMatrix.random_DDRM(hidden_len, input_len,-1,1,rand);
         weightsHO = SimpleMatrix.random_DDRM(output_len, hidden_len,-1,1,rand);
         biasH = SimpleMatrix.random_DDRM(hidden_len, 1, -1, 1, rand);
         biasO = SimpleMatrix.random_DDRM(output_len, 1, -1, 1, rand);
 
-        learningRate = 0.1;
+        this.learningRate = learningRate;
+    }
+
+    public FeedForwardNetwork(int input_len, int hidden_len, int output_len) {
+        this(input_len, hidden_len, output_len, 0.1);
     }
 
     public double[] feedForward(double[] input){
@@ -36,7 +40,6 @@ public class FeedForwardNetwork{
 
     //uses stochastic gradient descent, rather than something like the mean squared error.
     public void train(double[] inputs, double[] expected){
-        //need code from feed forward so we can access the data at the intermediate steps
 
         //convert input into a matrix
         SimpleMatrix m = new SimpleMatrix(inputs.length, 1);
